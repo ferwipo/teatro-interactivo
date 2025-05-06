@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Juego Interactivo: Teatro del Siglo de Oro</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f2f2f2;
+    }
+    img {
+      width: 90%;
+      max-width: 800px;
+      margin: 20px auto;
+      display: block;
+    }
+    .opciones {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Juego Interactivo: Partes del Corral de Comedias</h1>
+  <p>Haz clic en el nombre correcto para cada parte señalada.</p>
+
+  <img src="3e026b40-4ec2-4b37-80f5-caca7eec0054.png" alt="Corral de Comedias" usemap="#mapa-teatro">
+
+  <map name="mapa-teatro">
+    <area shape="rect" coords="130,100,180,150" alt="Cazuela" onclick="verificar('Cazuela')">
+    <area shape="rect" coords="230,30,300,90" alt="Desván" onclick="verificar('Desván')">
+    <area shape="rect" coords="500,80,600,130" alt="Aposentos" onclick="verificar('Aposentos')">
+    <area shape="rect" coords="380,200,450,250" alt="Escenario" onclick="verificar('Escenario')">
+    <area shape="rect" coords="250,300,400,400" alt="Patio" onclick="verificar('Patio')">
+    <area shape="rect" coords="100,250,200,300" alt="Gradas" onclick="verificar('Gradas')">
+    <area shape="rect" coords="40,200,100,250" alt="Alojería" onclick="verificar('Alojería')">
+  </map>
+
+  <div class="opciones">
+    <button onclick="seleccionar('Alojería')">Alojería</button>
+    <button onclick="seleccionar('Cazuela')">Cazuela</button>
+    <button onclick="seleccionar('Desván')">Desván</button>
+    <button onclick="seleccionar('Aposentos')">Aposentos</button>
+    <button onclick="seleccionar('Escenario')">Escenario</button>
+    <button onclick="seleccionar('Patio')">Patio</button>
+    <button onclick="seleccionar('Gradas')">Gradas</button>
+  </div>
+
+  <div id="resultado"></div>
+
+  <script>
+    let seleccion = "";
+
+    function seleccionar(zona) {
+      seleccion = zona;
+      document.getElementById("resultado").textContent = `Seleccionaste: ${zona}. Ahora haz clic en la parte correspondiente de la imagen.`;
+    }
+
+    function verificar(zonaCorrecta) {
+      if (!seleccion) {
+        document.getElementById("resultado").textContent = "Primero selecciona un nombre.";
+        return;
+      }
+
+      if (seleccion === zonaCorrecta) {
+        document.getElementById("resultado").textContent = `¡Correcto! Has identificado la ${zonaCorrecta}.`;
+      } else {
+        document.getElementById("resultado").textContent = `Incorrecto. Esa parte es ${zonaCorrecta}, no ${seleccion}.`;
+      }
+      seleccion = "";
+    }
+  </script>
+</body>
+</html>
